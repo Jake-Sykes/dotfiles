@@ -1,7 +1,7 @@
 # Dotfiles
 ## install instructions
 
-these dotfiles use stow! 
+these dotfiles use GNU stow! 
 
 ```
 sudo pacman -Syu stow

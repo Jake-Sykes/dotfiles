@@ -24,6 +24,7 @@ vim.pack.add({
     { src = "https://github.com/EdenEast/nightfox.nvim" },
     { src = "https://github.com/echasnovski/mini.pick" },
     { src = "https://github.com/echasnovski/mini.pairs" },
+    { src = "https://github.com/echasnovski/mini.icons" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/Olical/conjure" },
@@ -33,11 +34,13 @@ vim.g["conjure#mapping#doc_word"] = false
 
 require("mini.pick").setup()
 require("mini.pairs").setup()
+require("mini.icons").setup()
 require("oil").setup()
 
 vim.keymap.set("n", "<leader>ff", ":Pick files<CR>")
 vim.keymap.set("n", "<leader>fh", ":Pick help<CR>")
 vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>")
+vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>")
 
 vim.keymap.set("n", "<leader>,", ":Oil<CR>")
 
