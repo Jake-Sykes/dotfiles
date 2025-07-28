@@ -11,3 +11,4 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 export GOPATH=$HOME/.go/
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
