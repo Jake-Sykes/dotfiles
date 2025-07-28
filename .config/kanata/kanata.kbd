@@ -1,0 +1,42 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  caps
+  q w e r t y u i o p
+  a s d f g h j k l ;
+  \ z x c v b n m , .
+)
+
+(defvar
+  tap-time 200
+  hold-time 200
+) 
+
+(defalias
+  symbols-layer (layer-toggle symbols)
+  esc-mod (tap-hold 0 $hold-time esc @symbols-layer)
+  m-mod (tap-hold $tap-time $hold-time q lmet)
+  a-mod (tap-hold $tap-time $hold-time w lalt)
+  s-mod (tap-hold $tap-time $hold-time e lsft)
+  c-mod (tap-hold $tap-time $hold-time r lctl)
+  rc-mod (tap-hold $tap-time $hold-time u rctl)
+  rs-mod (tap-hold $tap-time $hold-time i rsft)
+  ra-mod (tap-hold $tap-time $hold-time o lalt)
+  rm-mod (tap-hold $tap-time $hold-time p rmet)
+)
+
+(deflayer base
+  @esc-mod
+  @m-mod @a-mod @s-mod @c-mod _ _ @rc-mod @rs-mod @ra-mod @rm-mod
+  _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _
+)
+
+(deflayer symbols
+  @esc-mod
+  _ _ _ S-0 _ = - S-] ] _
+  _ _ _ S-9 _ bspc ret S-[ [ _
+  _ _ _ _ _ _ _ _ _ _
+)
