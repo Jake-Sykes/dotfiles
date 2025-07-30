@@ -28,6 +28,7 @@ vim.pack.add({
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/Olical/conjure" },
+    { src = "https://github.com/chomosuke/typst-preview.nvim" },
 })
 
 vim.g["conjure#mapping#doc_word"] = false
@@ -44,7 +45,7 @@ vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>")
 
 vim.keymap.set("n", "<leader>,", ":Oil<CR>")
 
-vim.lsp.enable({ "lua_ls", "clangd", "racket_langserver" })
+vim.lsp.enable({ "lua_ls", "clangd", "racket_langserver", "tinymist" })
 vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format)
 
 vim.api.nvim_create_autocmd("LspAttach", {

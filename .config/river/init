@@ -3,6 +3,8 @@
 ### RIVER CONFIG ###
 ####################
 
+theme = "carbonfox"
+
 riverctl map normal Super Return spawn ghostty 
 
 riverctl map normal Super Q close

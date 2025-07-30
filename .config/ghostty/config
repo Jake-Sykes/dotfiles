@@ -11,7 +11,7 @@ window-padding-balance = true
 window-decoration = none
 gtk-tabs-location = "hidden"
 
-theme = "0x96f"
+theme = "carbonfox"
 
 confirm-close-surface = false
 
