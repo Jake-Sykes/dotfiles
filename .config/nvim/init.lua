@@ -12,17 +12,25 @@ vim.opt.autoindent = true
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir") -- Undo directory
 vim.opt.swapfile = false
 
+vim.opt.clipboard:append('unnamedplus')
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
 
 -- this is so nice!!
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-f>", "<C-f>M")
+vim.keymap.set("n", "<C-b>", "<C-b>M")
 
+vim.keymap.set('n', '<leader>y', '"*y')
+vim.keymap.set('n', '<leader>p', '"*p')
+
+vim.keymap.set('n', '<leader>y', '"*y')
 vim.pack.add({
     { src = "https://github.com/EdenEast/nightfox.nvim" },
     { src = "https://github.com/echasnovski/mini.pick" },
+    { src = "https://github.com/echasnovski/mini.notify" },
     { src = "https://github.com/echasnovski/mini.pairs" },
     { src = "https://github.com/echasnovski/mini.icons" },
     { src = "https://github.com/stevearc/oil.nvim" },
@@ -37,6 +45,9 @@ require("mini.pick").setup()
 require("mini.pairs").setup()
 require("mini.icons").setup()
 require("oil").setup()
+
+require("mini.notify").setup()
+vim.notify = require('mini.notify').make_notify()
 
 vim.keymap.set("n", "<leader>ff", ":Pick files<CR>")
 vim.keymap.set("n", "<leader>fh", ":Pick help<CR>")
@@ -74,3 +85,5 @@ vim.cmd(":hi statusline guibg=NONE")
 
 vim.keymap.set("t", "<esc><esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>t", ":Floaterminal<CR>")
+
+vim.notify("Config loaded!!", vim.log.levels.INFO)

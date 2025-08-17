@@ -1,42 +1,54 @@
+;; new test
+
 (defcfg
   process-unmapped-keys yes
 )
 
 (defsrc
-  caps
-  q w e r t y u i o p
-  a s d f g h j k l ;
-  \ z x c v b n m , .
-)
-
-(defvar
-  tap-time 200
-  hold-time 200
-) 
-
-(defalias
-  symbols-layer (layer-toggle symbols)
-  esc-mod (tap-hold 0 $hold-time esc @symbols-layer)
-  m-mod (tap-hold $tap-time $hold-time q lmet)
-  a-mod (tap-hold $tap-time $hold-time w lalt)
-  s-mod (tap-hold $tap-time $hold-time e lsft)
-  c-mod (tap-hold $tap-time $hold-time r lctl)
-  rc-mod (tap-hold $tap-time $hold-time u rctl)
-  rs-mod (tap-hold $tap-time $hold-time i rsft)
-  ra-mod (tap-hold $tap-time $hold-time o lalt)
-  rm-mod (tap-hold $tap-time $hold-time p rmet)
+  grv 1 2 3 4 5 6 7 8 9 0 - = bspc
+  tab q w e r t y u i o p [ ] ret
+  caps a s d f g h j k l ; ' \
+  lsft < z x c v b n m , . / rsft
+  lctl lmet lalt spc ralt rctl
 )
 
 (deflayer base
-  @esc-mod
-  @m-mod @a-mod @s-mod @c-mod _ _ @rc-mod @rs-mod @ra-mod @rm-mod
-  _ _ _ _ _ _ _ _ _ _
-  _ _ _ _ _ _ _ _ _ _
+  @grv 1 2 3 4 5 6 7 8 9 0 - = bspc
+  tab q @w @f @p b j @l @u @y ; [ ] ret
+  esc a r s t g m n e i o ' \
+  lsft z x c d v \ k h , . / rsft
+  lctl lmet alt @spc ralt rctl
 )
 
-(deflayer symbols
-  @esc-mod
-  _ _ _ S-0 _ = - S-] ] _
-  _ _ _ S-9 _ bspc ret S-[ [ _
-  _ _ _ _ _ _ _ _ _ _
+(deflayer keyboard-layouts
+  @grl @base @qwerty _ _ _ _ _ _ _ _ _ _ _
+  lrld _ _ _ _ _ _ _ _ _ _ _ _ _
+  caps _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _
+)
+
+(deflayer qwerty
+  @grv 1 2 3 4 5 6 7 8 9 0 - = bspc
+  tab q w e r t y u i o p [ ] ret
+  esc a s d f g h j k l ; ' \
+  lsft z x c v b \ n m , . / rsft
+  lctl lmet alt spc ralt rctl
+)
+
+(defalias
+  grl (layer-switch keyboard-layouts)
+  grv (tap-hold 200 200 grv @grl)
+  base (layer-switch base)
+  qwerty (layer-switch qwerty) 
+
+  w (tap-hold 200 200 w lalt)
+  f (tap-hold 200 200 f lmet)
+  p (tap-hold 200 200 p lctl)
+
+  l (tap-hold 200 200 l rctl)
+  u (tap-hold 200 200 u rmet)
+  y (tap-hold 200 200 y ralt)
+
+  spc (tap-hold 200 200 spc lshift)
 )

@@ -1,0 +1,126 @@
+;; New config!!
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  grv 1 2 3 4 5 6 7 8 9 0 - = bspc
+  tab q w e r t y u i o p [ ] ret
+  caps a s d f g h j k l ; ' \
+  lsft < z x c v b n m , . / rsft
+  lctl lmet lalt spc ralt rctl
+)
+
+(defvar
+  tap-time 200
+  hold-time 200
+
+  left-hand-keys (
+    q w f p b
+    a r s t g
+    z x c d v
+  )
+  right-hand-keys (
+    j l u y ;
+    m n e i o
+    k h , . /
+  )
+)
+
+(deflayer base
+  @grl 1 2 3 4 5 6 7 8 9 0 - = bspc
+  tab q w f p b j l u y ; [ ] ret
+  esc @a @r @s @t g m @n @e @i @o ' \
+  lsft z x c d v \ k h , . / rsft
+  lctl lmet alt @spc ralt rctl
+)
+
+
+(deflayer nomods
+  grv 1 2 3 4 5 6 7 8 9 0 - = bspc
+  tab q w f p b j l u y ; [ ] ret
+  esc a r s t g m n e i o ' \
+  lsft z x c d v \ k h , . / rsft
+  lctl lmet alt @spc ralt rctl
+)
+
+(deflayer extend
+  _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ 7 8 9 _ _ _ _ _ _ _ _ _
+  _ tab 4 5 5 _ _ bspc ret _ _ _ _
+  _ _ 1 2 3 0 _ _ _ _ _ _ _
+  _ _ _ _ _ _
+)
+
+(deflayer symbols
+  _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ \ XX = - @_ @+ @! @@ @# / _ _ _
+  _ grv _ @lcb @lb [ @? @$ @% @^ _ _ _
+  _ _ XX @rcb @rb ] @| @& @* ' @dq _ _
+  _ _ _ _ _ _
+)
+
+(deflayer keyboard-layouts
+  @grl @base @qwerty _ _ _ _ _ _ _ _ _ _ _
+  lrld _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _
+)
+
+(deflayer qwerty
+  @grl 1 2 3 4 5 6 7 8 9 0 - = bspc
+  tab q w e r t y u i o p [ ] ret
+  esc a s d f g h j k l ; ' \
+  lsft z x c v b \ n m , . / rsft
+  lctl lmet alt spc ralt rctl
+)
+
+(deffakekeys
+  to-base (layer-switch base)
+)
+
+(defalias
+  grl (layer-switch keyboard-layouts)
+  base (layer-switch base)
+  qwerty (layer-switch qwerty)
+  hold-symbols (layer-while-held symbols)
+  hold-extend (layer-while-held extend)
+
+  lb (unicode "(")
+  rb (unicode ")")
+  lcb (unicode {)
+  rcb (unicode })
+  
+  ! (unicode !)
+  @ (unicode @)
+  # (unicode #)
+  $ (unicode $)
+  % (unicode %)
+  ^ (unicode ^)
+  & (unicode &)
+  * (unicode *)
+  _ (unicode _)
+  + (unicode +)
+  | (unicode |)
+  ? (unicode ?)
+  dq (unicode r#"""#)
+
+  tap (multi
+    (layer-switch nomods)
+    (on-idle-fakekey to-base tap 20)
+  )
+
+  a (tap-hold-release $tap-time $hold-time (multi a @tap) lmet)
+  r (tap-hold-release $tap-time $hold-time (multi r @tap) @hold-symbols)
+  s (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lalt $left-hand-keys)
+  t (tap-hold-release-keys $tap-time $hold-time (multi t @tap) lctl $left-hand-keys)
+
+  n (tap-hold-release-keys $tap-time $hold-time (multi n @tap) rctl $left-hand-keys)
+  e (tap-hold-release-keys $tap-time $hold-time (multi e @tap) ralt $left-hand-keys)
+  i (tap-hold-release $tap-time $hold-time (multi i @tap) @hold-extend)
+  o (tap-hold-release $tap-time $hold-time (multi o @tap) rmet)
+
+  spc (tap-hold-release $tap-time $hold-time (multi spc @tap) lshift)
+)
