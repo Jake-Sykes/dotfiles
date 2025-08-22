@@ -1,8 +1,11 @@
+-- NEOVIM CONFIG!
+
+-- Options
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 vim.opt.winborder = "rounded"
-
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
@@ -12,62 +15,34 @@ vim.opt.autoindent = true
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir") -- Undo directory
 vim.opt.swapfile = false
 
-vim.opt.clipboard:append('unnamedplus')
+-- Globals
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g["conjure#mapping#doc_word"] = false
 
--- this is so nice!!
+-- Keymaps
+
+vim.keymap.set("n", "<leader>w", ":write<CR>")
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
+
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-f>", "<C-f>M")
 vim.keymap.set("n", "<C-b>", "<C-b>M")
 
-vim.keymap.set('n', '<leader>y', '"*y')
-vim.keymap.set('n', '<leader>p', '"*p')
+vim.keymap.set("n", "<leader>c", "1z=")
+vim.keymap.set("n", "<leader>st", ":setlocal spell spelllang=en_gb<CR>")
+vim.keymap.set("n", "<leader>sf", ":setlocal spell spelllang=<CR>")
 
-vim.keymap.set('n', '<leader>y', '"*y')
-vim.pack.add({
-    { src = "https://github.com/EdenEast/nightfox.nvim" },
-    { src = "https://github.com/echasnovski/mini.pick" },
-    { src = "https://github.com/echasnovski/mini.notify" },
-    { src = "https://github.com/echasnovski/mini.pairs" },
-    { src = "https://github.com/echasnovski/mini.icons" },
-    { src = "https://github.com/stevearc/oil.nvim" },
-    { src = "https://github.com/neovim/nvim-lspconfig" },
-    { src = "https://github.com/Olical/conjure" },
-    { src = "https://github.com/chomosuke/typst-preview.nvim" },
-})
 
-vim.g["conjure#mapping#doc_word"] = false
+vim.keymap.set("n", "<leader>f", ":Pick files<CR>")
+vim.keymap.set("n", "<leader>h", ":Pick help<CR>")
+vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>")
 
-require("mini.pick").setup()
-require("mini.pairs").setup()
-require("mini.icons").setup()
-require("oil").setup()
+vim.keymap.set("n", "<leader>o", ":Oil<CR>")
 
-require("mini.notify").setup()
-vim.notify = require('mini.notify').make_notify()
-
-vim.keymap.set("n", "<leader>ff", ":Pick files<CR>")
-vim.keymap.set("n", "<leader>fh", ":Pick help<CR>")
-vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>")
-vim.keymap.set("n", "<leader>fg", ":Pick grep_live<CR>")
-
-vim.keymap.set("n", "<leader>,", ":Oil<CR>")
-
-vim.lsp.enable({ "lua_ls", "clangd", "racket_langserver", "tinymist" })
-vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format)
-
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(ev)
-        local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        if client:supports_method("textDocument/completion") then
-            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
-        end
-    end,
-})
-vim.cmd("set completeopt+=noselect")
+-- Autocmd
 
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
@@ -80,10 +55,31 @@ if vim.fn.expand(undodir) == 0 then
     vim.fn.mkdir(undodir, "p")
 end
 
+-- Plugins
+
+vim.pack.add({
+    { src = "https://github.com/EdenEast/nightfox.nvim" },
+    { src = "https://github.com/echasnovski/mini.pick" },
+    { src = "https://github.com/echasnovski/mini.notify" },
+    { src = "https://github.com/echasnovski/mini.pairs" },
+    { src = "https://github.com/echasnovski/mini.icons" },
+    { src = "https://github.com/stevearc/oil.nvim" },
+    { src = "https://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+    { src = "https://github.com/Olical/conjure" },
+    { src = "https://github.com/chomosuke/typst-preview.nvim" },
+    { src = "https://github.com/norcalli/nvim-colorizer.lua" },
+})
+
+require("mini.pick").setup()
+require("mini.pairs").setup()
+require("mini.icons").setup()
+require("oil").setup()
+require("mini.notify").setup()
+
+vim.notify = require('mini.notify').make_notify()
+
 vim.cmd("colorscheme carbonfox")
 vim.cmd(":hi statusline guibg=NONE")
 
-vim.keymap.set("t", "<esc><esc>", "<C-\\><C-n>")
-vim.keymap.set("n", "<leader>t", ":Floaterminal<CR>")
-
-vim.notify("Config loaded!!", vim.log.levels.INFO)
+vim.lsp.enable({ "lua_ls", "clangd", "racket_langserver", "tinymist" })

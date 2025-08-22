@@ -16,7 +16,7 @@
   @grv 1 2 3 4 5 6 7 8 9 0 - = bspc
   tab q @w @f @p b j @l @u @y ; [ ] ret
   esc a r s t g m n e i o ' \
-  lsft z x c d v \ k h , . / rsft
+  lsft z x c d v @sym k h , . / rsft
   lctl lmet alt @spc ralt rctl
 )
 
@@ -24,6 +24,14 @@
   @grl @base @qwerty _ _ _ _ _ _ _ _ _ _ _
   lrld _ _ _ _ _ _ _ _ _ _ _ _ _
   caps _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _
+)
+
+(deflayer symbols
+  @grl _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ grv ' S-' _ _ - = S-- S-= _ _ _
+  esc \ S-\ [ ] _ _ S-[ S-] _ _ _ _
   _ _ _ _ _ _ _ _ _ _ _ _ _
   _ _ _ _ _ _
 )
@@ -38,17 +46,19 @@
 
 (defalias
   grl (layer-switch keyboard-layouts)
-  grv (tap-hold 200 200 grv @grl)
   base (layer-switch base)
   qwerty (layer-switch qwerty) 
 
-  w (tap-hold 200 200 w lalt)
-  f (tap-hold 200 200 f lmet)
+  grv (tap-hold 200 200 grv @grl)
+  sym (one-shot-press-pcancel 2000 (layer-while-held symbols))
+
+  w (tap-hold 200 200 w lmet)
+  f (tap-hold 200 200 f lalt)
   p (tap-hold 200 200 p lctl)
 
   l (tap-hold 200 200 l rctl)
-  u (tap-hold 200 200 u rmet)
-  y (tap-hold 200 200 y ralt)
+  u (tap-hold 200 200 u ralt)
+  y (tap-hold 200 200 y rmet)
 
   spc (tap-hold 200 200 spc lshift)
 )

@@ -5,7 +5,7 @@
 
 theme = "carbonfox"
 
-riverctl map normal Super Return spawn ghostty 
+riverctl map normal Super Return spawn alacritty 
 
 riverctl map normal Super Q close
 
