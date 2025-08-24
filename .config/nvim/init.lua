@@ -19,10 +19,10 @@ vim.opt.swapfile = false
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g["conjure#mapping#doc_word"] = false
 
 -- Keymaps
 
+vim.keymap.set("n", "<leader>q", ":quit<CR>")
 vim.keymap.set("n", "<leader>w", ":write<CR>")
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 
@@ -66,9 +66,7 @@ vim.pack.add({
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
-    { src = "https://github.com/Olical/conjure" },
     { src = "https://github.com/chomosuke/typst-preview.nvim" },
-    { src = "https://github.com/norcalli/nvim-colorizer.lua" },
 })
 
 require("mini.pick").setup()
@@ -79,7 +77,8 @@ require("mini.notify").setup()
 
 vim.notify = require('mini.notify').make_notify()
 
+vim.lsp.enable({ "lua_ls", "clangd", "racket_langserver", "tinymist" })
+
 vim.cmd("colorscheme carbonfox")
 vim.cmd(":hi statusline guibg=NONE")
-
-vim.lsp.enable({ "lua_ls", "clangd", "racket_langserver", "tinymist" })
+vim.cmd("set completeopt+=noselect")
