@@ -1,0 +1,25 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  caps
+  q w e r t y u i o p
+  a s d f g h j k l ;
+  < z x c v b n m , . /
+)
+
+(deflayer colmak-dh
+  esc
+  q w @f @p b j @l @u y ;
+  a r s t g m n e i o
+  z x c d v @met k h , . /
+)
+
+(defalias
+  f (tap-hold 200 200 f lsft)
+  p (tap-hold 200 200 p lctl)
+  l (tap-hold 200 200 l lctl)
+  u (tap-hold 200 200 u lsft)
+  met (one-shot-press-pcancel 2000 lmet)
+)

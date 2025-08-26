@@ -60,18 +60,18 @@ end
 vim.pack.add({
     { src = "https://github.com/EdenEast/nightfox.nvim" },
     { src = "https://github.com/echasnovski/mini.pick" },
+    { src = "https://github.com/echasnovski/mini.icons" },
     { src = "https://github.com/echasnovski/mini.notify" },
     { src = "https://github.com/echasnovski/mini.pairs" },
-    { src = "https://github.com/echasnovski/mini.icons" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
     { src = "https://github.com/chomosuke/typst-preview.nvim" },
 })
 
+require("mini.icons").setup()
 require("mini.pick").setup()
 require("mini.pairs").setup()
-require("mini.icons").setup()
 require("oil").setup()
 require("mini.notify").setup()
 

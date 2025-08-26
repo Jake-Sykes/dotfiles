@@ -1,0 +1,18 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  e r u i
+)
+
+(deflayer colmak-dh
+  @f @p @l @u
+)
+
+(defalias
+  f (tap-hold 200 200 e lsft)
+  p (tap-hold 200 200 r lctl)
+  l (tap-hold 200 200 u lctl)
+  u (tap-hold 200 200 i lsft)
+)

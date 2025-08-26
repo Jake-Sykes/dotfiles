@@ -9,5 +9,5 @@ decorations = "none"
 size = 12
 
 [font.normal]
-family = "FiraCode Nerd Font"
+family = "jetbrains mono"
 style = "Regular"
