@@ -10,6 +10,12 @@
   @f @p @l @u
 )
 
+(defvar
+  tap-time 200
+  hold-time 200
+  hold-time-slow 300
+)
+
 (defalias
   f (tap-hold 200 200 e lsft)
   p (tap-hold 200 200 r lctl)

@@ -18,7 +18,7 @@ set $term alacritty
 # Your preferred application launcher
 
 # set $menu wmenu-run
-set $menu wofi --show drun
+set $menu wofi --gtk-dark --show drun
 
 include /etc/sway/config-vars.d/*
 
@@ -63,9 +63,13 @@ include /etc/sway/config-vars.d/*
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
     input * {
+        xkb_layout "us"
+        xkb_options "caps:escape"
         # xkb_layout "gb"
-        xkb_layout "real-colmak"
-        xkb_options "altwin:swap_alt_win, caps:escape"
+        # xkb_layout "real-colmak"
+        # xkb_layout "colmak-cool-symbols"
+        # xkb_layout "real-workman"
+        # xkb_options "altwin:swap_alt_win"
     }
 
     input "1267:12739:ELAN050B:00_04F3:31C3_Touchpad" {
@@ -83,7 +87,7 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+w exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -158,8 +162,8 @@ include /etc/sway/config-vars.d/*
     bindsym $mod+s splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $mod+Shift+t layout tabbed
+    bindsym $mod+Shift+s layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -231,7 +235,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command while echo "$(cat /sys/class/power_supply/BAT1/capacity)% $(date +'%Y-%m-%d %H:%M')"; do sleep 60; done
 
     colors {
         statusline #ffffff
@@ -239,5 +243,9 @@ bar {
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
+
+exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway DISPLAY
+exec wl-paste -t text --watch clipman store --histpath="~/.cache/clipman.json"
+bindsym $mod+y exec clipman --histpath="~/.cache/clipman.json" pick -t wofi --tool-args="--gtk-dark"
 
 include /etc/sway/config.d/*

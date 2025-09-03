@@ -1,64 +1,91 @@
-;; new test
-
 (defcfg
   process-unmapped-keys yes
 )
 
 (defsrc
-  grv 1 2 3 4 5 6 7 8 9 0 - = bspc
-  tab q w e r t y u i o p [ ] ret
-  caps a s d f g h j k l ; ' \
-  lsft < z x c v b n m , . / rsft
-  lctl lmet lalt spc ralt rctl
+  1 2 3 4 5 6 7 8 9 0 - =
+  q w e r t y u i o p [ ]
+  a s d f g h j k l ; ' \
+  < z x c v b n m , . /
+
+  lmet lalt
 )
 
-(deflayer base
-  @grv 1 2 3 4 5 6 7 8 9 0 - = bspc
-  tab q @w @f @p b j @l @u @y ; [ ] ret
-  esc a r s t g m n e i o ' \
-  lsft z x c d v @sym k h , . / rsft
-  lctl lmet alt @spc ralt rctl
-)
+(deflayer colmak-DH
+  1 2 3 4 5 6 7 8 9 0 [ ]
+  q @w @f @p b j @l @u @y ; - =
+  a r s t g m n e i o ' \
+  z x c d v @cw k h , . /
 
-(deflayer keyboard-layouts
-  @grl @base @qwerty _ _ _ _ _ _ _ _ _ _ _
-  lrld _ _ _ _ _ _ _ _ _ _ _ _ _
-  caps _ _ _ _ _ _ _ _ _ _ _ _
-  _ _ _ _ _ _ _ _ _ _ _ _ _
-  _ _ _ _ _ _
-)
-
-(deflayer symbols
-  @grl _ _ _ _ _ _ _ _ _ _ _ _ _
-  _ _ grv [ ] _ _ - = S-- S-= _ _ _
-  esc \ S-\ ' S-' _ _ S-[ S-] _ _ _ _
-  _ _ _ _ _ _ _ _ _ _ _ _ _
-  _ _ _ _ _ _
+  lalt lmet
 )
 
 (deflayer qwerty
-  @grv 1 2 3 4 5 6 7 8 9 0 - = bspc
-  tab q w e r t y u i o p [ ] ret
-  esc a s d f g h j k l ; ' \
-  lsft z x c v b \ n m , . / rsft
-  lctl lmet alt spc ralt rctl
+  1 2 3 4 5 6 7 8 9 0 [ ]
+  q w e r t y u i o p - =
+  a s d f g h j k l ; ' \
+  z x c d v @cw k h , . /
+
+  lalt lmet
+)
+
+(deflayer extend
+  f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+  XX XX XX XX XX XX @one_ctl @one_sft @one_alt @one_met XX XX
+  XX XX XX XX XX C-bspc bspc ret del XX XX XX
+  lrld XX XX XX XX XX XX XX XX XX XX
+
+  @l_switch XX
+)
+
+(deflayer layouts
+  @l_colmak @l_qwerty 3 4 5 6 7 8 9 0 [ ]
+  q w e r t y u i o p - =
+  a s d f g h j k l ; ' \
+  z x c d v @cw k h , . /
+
+  lalt lmet
+)
+
+(defvar
+  tap-time 0
+  hold-time 200
+  hold-time-slow 300
+
+  left-hand-keys (
+    q w f p b
+    a r s t g
+    z x c d v
+  )
+
+  right-hand-keys (
+    j l u y ;
+    m n e i o
+    k h , . /
+  )
 )
 
 (defalias
-  grl (layer-switch keyboard-layouts)
-  base (layer-switch base)
-  qwerty (layer-switch qwerty) 
+  l_qwerty (layer-switch qwerty)
+  l_colmak (layer-switch colmak-DH)
+  l_switch (layer-switch layouts)
+  l_extend (layer-toggle extend)
 
-  grv (tap-hold 200 200 grv @grl)
-  sym (one-shot-press-pcancel 2000 (layer-while-held symbols))
+  one_ctl (one-shot 2000 lctl)
+  one_sft (one-shot 2000 lsft)
+  one_alt (one-shot 2000 lalt)
+  one_met (one-shot 2000 lmet)
 
-  w (tap-hold 200 200 w lmet)
-  f (tap-hold 200 200 f lalt)
-  p (tap-hold 200 200 p lctl)
+  pound (unicode £)
 
-  l (tap-hold 200 200 l rctl)
-  u (tap-hold 200 200 u ralt)
-  y (tap-hold 200 200 y rmet)
+  q (tap-hold $tap-time $hold-time q @l_extend)
+  w (tap-hold-release-keys $tap-time $hold-time w lalt $left-hand-keys)
+  f (tap-hold-release-keys $tap-time $hold-time f lsft $left-hand-keys)
+  p (tap-hold-release-keys $tap-time $hold-time p lctl $left-hand-keys)
+  l (tap-hold-release-keys $tap-time $hold-time l lctl $right-hand-keys)
+  u (tap-hold-release-keys $tap-time $hold-time u lsft $right-hand-keys)
+  y (tap-hold-release-keys $tap-time $hold-time y lalt $right-hand-keys)
+  ; (tap-hold $tap-time $hold-time ; @l_extend)
 
-  spc (tap-hold 200 200 spc lshift)
+  cw (caps-word 2000)
 )

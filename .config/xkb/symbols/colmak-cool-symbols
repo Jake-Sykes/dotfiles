@@ -1,7 +1,7 @@
 partial alphanumeric_keys
-xkb_symbols "real-colmak" {
+xkb_symbols "colmak-cool-symbols" {
 
-    name[Group1]= "English (Real Colmak-DH)";
+    name[Group1]= "English (Colmak-DH with experimental symbols)";
 
     key <TLDE> { [ grave, asciitilde ] };
 
@@ -15,8 +15,8 @@ xkb_symbols "real-colmak" {
     key <AE08> { [ 8, asterisk ] };
     key <AE09> { [ 9, parenleft ] };
     key <AE10> { [ 0, parenright ] };
-    key <AE11> { [ braceleft, bracketleft ] };
-    key <AE12> { [ braceright, bracketright ] };
+    key <AE11> { [ bracketleft , less ] };
+    key <AE12> { [ bracketright , greater ] };
 
     key <AD01> { [ q, Q ] };
     key <AD02> { [ w, W ] };
@@ -28,8 +28,8 @@ xkb_symbols "real-colmak" {
     key <AD08> { [ u, U ] };
     key <AD09> { [ y, Y ] };
     key <AD10> { [ semicolon, colon ] };
-    key <AD11> { [ less, greater ] };
-    key <AD12> { [ equal, plus ] };
+    key <AD11> { [ equal, plus ] };
+    key <AD12> { [ pound, asciitilde ] };
 
     key <AC01> { [ a, A ] };
     key <AC02> { [ r, R ] };
@@ -41,7 +41,7 @@ xkb_symbols "real-colmak" {
     key <AC08> { [ e, E ] }; 
     key <AC09> { [ i, I ] }; 
     key <AC10> { [ o, O ] };
-    key <AC11> { [ quotedbl, apostrophe ] };
+    key <AC11> { [ apostrophe, quotedbl ] };
 
     key <LSGT> { [ z, Z ] };
     key <AB01> { [ x, X ] };
@@ -51,11 +51,11 @@ xkb_symbols "real-colmak" {
     key <AB05> { [ minus, underscore ] };
     key <AB06> { [ k, K ] };
     key <AB07> { [ h, H ] };
-    key <AB08> { [ slash, question ] };
-    key <AB09> { [ period, comma ] };
-    key <AB10> { [ comma, less ] };
+    key <AB08> { [ comma, braceleft ] };
+    key <AB09> { [ period, braceright ] };
+    key <AB10> { [ slash, question ] };
 
-    key <BKSL> { [ backslash, pipe ] };
+    key <BKSL> { [ backslash, Pipe ] };
 
     key <CAPS> { [ Escape, BackSpace ] };
 };

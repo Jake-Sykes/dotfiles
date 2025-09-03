@@ -1,7 +1,7 @@
 partial alphanumeric_keys
-xkb_symbols "real-colmak" {
+xkb_symbols "real-workman" {
 
-    name[Group1]= "English (Real Colmak-DH)";
+    name[Group1]= "English (Real workman)";
 
     key <TLDE> { [ grave, asciitilde ] };
 
@@ -19,38 +19,38 @@ xkb_symbols "real-colmak" {
     key <AE12> { [ braceright, bracketright ] };
 
     key <AD01> { [ q, Q ] };
-    key <AD02> { [ w, W ] };
-    key <AD03> { [ f, F ] };
-    key <AD04> { [ p, P ] };
+    key <AD02> { [ d, D ] };
+    key <AD03> { [ r, R ] };
+    key <AD04> { [ w, W ] };
     key <AD05> { [ b, B ] };
     key <AD06> { [ j, J ] };
-    key <AD07> { [ l, L ] };
+    key <AD07> { [ f, F ] };
     key <AD08> { [ u, U ] };
-    key <AD09> { [ y, Y ] };
+    key <AD09> { [ p, P ] };
     key <AD10> { [ semicolon, colon ] };
     key <AD11> { [ less, greater ] };
     key <AD12> { [ equal, plus ] };
 
     key <AC01> { [ a, A ] };
-    key <AC02> { [ r, R ] };
-    key <AC03> { [ s, S ] };
+    key <AC02> { [ s, S ] };
+    key <AC03> { [ h, H ] };
     key <AC04> { [ t, T ] };
     key <AC05> { [ g, G ] };
-    key <AC06> { [ m, M ] };
+    key <AC06> { [ y, Y ] };
     key <AC07> { [ n, N ] };
     key <AC08> { [ e, E ] }; 
-    key <AC09> { [ i, I ] }; 
-    key <AC10> { [ o, O ] };
+    key <AC09> { [ o, O ] }; 
+    key <AC10> { [ i, I ] };
     key <AC11> { [ quotedbl, apostrophe ] };
 
     key <LSGT> { [ z, Z ] };
     key <AB01> { [ x, X ] };
-    key <AB02> { [ c, C ] };
-    key <AB03> { [ d, D ] };
+    key <AB02> { [ m, M ] };
+    key <AB03> { [ c, C ] };
     key <AB04> { [ v, V ] };
     key <AB05> { [ minus, underscore ] };
     key <AB06> { [ k, K ] };
-    key <AB07> { [ h, H ] };
+    key <AB07> { [ l, L ] };
     key <AB08> { [ slash, question ] };
     key <AB09> { [ period, comma ] };
     key <AB10> { [ comma, less ] };
