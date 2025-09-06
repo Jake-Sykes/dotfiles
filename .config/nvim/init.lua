@@ -70,6 +70,7 @@ vim.pack.add({
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
     { src = "https://github.com/chomosuke/typst-preview.nvim" },
+    { src = "https://github.com/mason-org/mason.nvim" },
 })
 
 require("mini.icons").setup()
@@ -77,10 +78,11 @@ require("mini.pick").setup()
 require("mini.pairs").setup()
 require("oil").setup()
 require("mini.notify").setup()
+require("mason").setup()
 
 vim.notify = require('mini.notify').make_notify()
 
-vim.lsp.enable({ "lua_ls", "clangd", "racket_langserver", "tinymist" })
+vim.lsp.enable({ "lua_ls", "pyright", "html", "cssls", "ts_ls", "clangd", "racket_langserver", "tinymist" })
 
 vim.cmd("colorscheme carbonfox")
 vim.cmd(":hi statusline guibg=NONE")
