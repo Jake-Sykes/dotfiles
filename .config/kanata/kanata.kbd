@@ -3,48 +3,52 @@
 )
 
 (defsrc
+  esc
   caps
   
-  1 2 3 4 5 6 7 8 9 0 - =
-  q w e r t y u i o p [ ]
-  a s d f g h j k l ; ' \
-  < z x c v b n m , . /
+  1 2 3 4 5 6 7 8 9 0
+  q w e r t y u i o p
+  a s d f g h j k l ;
+  < z x c v b n m
 
-  lmet lalt
+  lmet lalt spc
 )
 
 (deflayer colmak-DH
+  @l_switch
   esc
   
-  1 2 3 4 5 6 7 8 9 0 [ ]
-  q @w @f @p b j @l @u @y ; - =
-  a r s t g m n e i o ' \
-  z x c d v @cw k h , . /
+  1 2 3 4 5 6 7 8 9 0
+  q @w @f @p b j @l @u @y ;
+  a r s t g m n e i o
+  z x c d v @cw k h
 
-  lalt lmet
+  lalt lmet @spc
 )
 
 (deflayer qwerty
+  @l_switch
   esc
   
-  1 2 3 4 5 6 7 8 9 0 [ ]
-  q w e r t y u i o p - =
-  a s d f g h j k l ; ' \
-  z x c d v @cw k h , . /
+  1 2 3 4 5 6 7 8 9 0
+  q w e r t y u i o p
+  a s d f g h j k l ;
+  z x c d v @cw k h
 
-  lalt lmet
+  lalt lmet @spc
 )
 
 
 (deflayer layouts
+  @l_switch
   caps
 
-  @l_colmak @l_qwerty 3 4 5 6 7 8 9 0 [ ]
-  q w e r t y u i o p - =
-  a s d f g h j k l ; ' \
-  z x c d v @cw k h , . /
+  @l_colmak @l_qwerty 3 4 5 6 7 8 9 lrld
+  q w e r t y u i o p
+  a s d f g h j k l ;
+  z x c d v @cw k h
 
-  lalt lmet
+  lalt lmet @spc
 )
 
 (defvar
@@ -56,21 +60,18 @@
 (defalias
   l_qwerty (layer-switch qwerty)
   l_colmak (layer-switch colmak-DH)
-  l_switch (layer-switch layouts)
-
-  one_ctl (one-shot 2000 lctl)
-  one_sft (one-shot 2000 lsft)
-  one_alt (one-shot 2000 lalt)
-  one_met (one-shot 2000 lmet)
+  l_switch (layer-while-held layouts)
 
   pound (unicode £)
 
-  w (tap-hold $tap-time $hold-time w lalt)
-  f (tap-hold $tap-time $hold-time f lsft)
+  w (tap-hold $tap-time $hold-time w lmet)
+  f (tap-hold $tap-time $hold-time f lalt)
   p (tap-hold $tap-time $hold-time p lctl)
   l (tap-hold $tap-time $hold-time l lctl)
-  u (tap-hold $tap-time $hold-time u lsft)
-  y (tap-hold $tap-time $hold-time y lalt)
+  u (tap-hold $tap-time $hold-time u lalt)
+  y (tap-hold $tap-time $hold-time y lmet)
+
+  spc (tap-hold $tap-time $hold-time spc lsft)
 
   cw (caps-word 2000)
 )

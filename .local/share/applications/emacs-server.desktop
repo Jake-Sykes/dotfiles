@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Name=Emacs (Custom Server)
-Exec=/usr/bin/emacs --daemon --load=~/.emacs.d/init.el
+Exec=/usr/bin/emacs --daemon &
 Icon=emacs
 Type=Application
 Terminal=false
