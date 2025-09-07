@@ -23,7 +23,7 @@
   a r s t g m n e i o
   z x c d v @cw k h
 
-  lalt lmet @spc
+  lalt lmet spc
 )
 
 (deflayer qwerty
@@ -35,7 +35,7 @@
   a s d f g h j k l ;
   z x c d v @cw k h
 
-  lalt lmet @spc
+  lalt lmet spc
 )
 
 
@@ -48,7 +48,7 @@
   a s d f g h j k l ;
   z x c d v @cw k h
 
-  lalt lmet @spc
+  lalt lmet spc
 )
 
 (defvar
@@ -64,12 +64,12 @@
 
   pound (unicode £)
 
-  w (tap-hold $tap-time $hold-time w lmet)
-  f (tap-hold $tap-time $hold-time f lalt)
+  w (tap-hold $tap-time $hold-time w lalt)
+  f (tap-hold $tap-time $hold-time f lsft)
   p (tap-hold $tap-time $hold-time p lctl)
   l (tap-hold $tap-time $hold-time l lctl)
-  u (tap-hold $tap-time $hold-time u lalt)
-  y (tap-hold $tap-time $hold-time y lmet)
+  u (tap-hold $tap-time $hold-time u lsft)
+  y (tap-hold $tap-time $hold-time y lalt)
 
   spc (tap-hold $tap-time $hold-time spc lsft)
 
