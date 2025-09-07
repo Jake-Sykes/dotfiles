@@ -11,7 +11,7 @@
   a s d f g h j k l ;
   < z x c v b n m
 
-  @spc
+  lmet lalt spc
 )
 
 (deflayer colmak-DH
@@ -19,11 +19,11 @@
   esc
   
   1 2 3 4 5 6 7 8 9 0
-  q @w @f @p b j @l @u @y ;
+  q w @f @p b j @l @u y ;
   a r s t g m n e i o
   z x c d v @cw k h
 
-  @spc
+  lalt lmet @spc
 )
 
 (deflayer qwerty
@@ -35,7 +35,7 @@
   a s d f g h j k l ;
   z x c d v @cw k h
 
-  @spc
+  lalt lmet @spc
 )
 
 
@@ -48,7 +48,7 @@
   a s d f g h j k l ;
   z x c d v @cw k h
 
-  @spc
+  lalt lmet @spc
 )
 
 (defvar
