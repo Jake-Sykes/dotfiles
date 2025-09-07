@@ -1,0 +1,4 @@
+[Desktop Entry]
+Version=1.0
+Name=kanata config
+Exec=/.cargo/bin/kanata -c .config/kanata/kanata.kbd
